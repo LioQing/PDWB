@@ -29,11 +29,7 @@
 #endif
 
 // time step
-#ifdef _WIN32
-	#define TimeStep 66.f
-#else
-	#define TimeStep 66.64f
-#endif
+#define TIMESTEP 1000.0 / 15.0
 
 int main()
 {
@@ -41,28 +37,27 @@ int main()
 
     std::string str;
     std::chrono::steady_clock::time_point begin, end;
-    float dt, target_dt = TimeStep;
+    uint32_t et = 0;
+    uint32_t td = 0;
+
     #ifdef _WIN32
     play_sound("bad_apple.wav");
+    sleep(120);
     #endif
-    for (;;)
+    begin = std::chrono::steady_clock::now();
+    for (uint32_t n = 1;; ++n)
     {
-        begin = std::chrono::steady_clock::now();
-
         std::getline(video_file, str, 'S');
         ClearScreen();
         std::cout << str << std::endl;
+
+        td = n * TIMESTEP;
             
         end = std::chrono::steady_clock::now();
+        et = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
 
-        dt = std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() / 1000.f;
-        if (dt < target_dt)
-        {
-            sleep((uint32_t)(target_dt - dt));
-            target_dt = TimeStep;
-        }
-        else
-            target_dt = TimeStep - dt + target_dt;
+        if (et < td)
+            sleep((uint32_t)(td - et));
     }
 
     video_file.close();
