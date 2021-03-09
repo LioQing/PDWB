@@ -61,7 +61,7 @@ int main()
             sleep((uint32_t)(target_dt - dt));
             target_dt = TimeStep;
         }
-        else if (dt > target_dt)
+        else
             target_dt = TimeStep - dt + target_dt;
     }
 
