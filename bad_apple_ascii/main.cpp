@@ -72,7 +72,9 @@ int main()
     }
 
     video_file.close();
+    #if __APPLE__
     t.join();
+    #endif
 
     std::cin.get();
 
