@@ -331,7 +331,7 @@ void snake_spawn()
 void snake_highscore_ini()
 {
     FILE *infile;
-    infile = fopen("D:\\SuperEGG\\Script\\C\\snake\\highscore.txt", "r");
+    infile = fopen("highscore.txt", "r");
 
     for (int i = 1000; i >= 1; i /= 10)
     {
@@ -344,7 +344,7 @@ void snake_highscore_ini()
 void snake_highscore_save()
 {
     FILE *outfile;
-    outfile = fopen("D:\\SuperEGG\\Script\\C\\snake\\highscore.txt", "w");
+    outfile = fopen("highscore.txt", "w");
 
     for (int i = 10000; i > 1; i /= 10)
     {
