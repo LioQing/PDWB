@@ -4,13 +4,14 @@
 
 int main(int argc, char** argv) 
 {
-	int lower = 1, upper = 100;
+	auto lower = 1;
+    auto upper = 100;
 	std::random_device rnd;
 	std::mt19937 gen(rnd());
 	std::uniform_int_distribution<> distrib(lower, upper);
 	int n = distrib(gen);
 
-	for (int input = 0; input != n;)
+	for (auto input = 0; input != n;)
 	{
 		while (std::cout << "Make a guess (" << lower << " - " << upper << "): ", !(std::cin >> input) || input < lower || input > upper)
 		{
