@@ -4,9 +4,9 @@
 #include <chrono>
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-	#include <windows.h>
+    #include <windows.h>
 #else
-	#include <unistd.h>
+    #include <unistd.h>
     #if __APPLE__
         #include <thread>
     #endif
@@ -16,14 +16,14 @@
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     #define ClearScreen() SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0, 0 })
 #else
-	#define ClearScreen() printf("\033[%d;%dH", 1, 1)
+    #define ClearScreen() printf("\033[%d;%dH", 1, 1)
 #endif
 
 // sleep
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-	#define sleep(ms) Sleep(ms)
+    #define sleep(ms) Sleep(ms)
 #else
-	#define sleep(ms) usleep(ms * 1000)
+    #define sleep(ms) usleep(ms * 1000)
 #endif
 
 // play music
