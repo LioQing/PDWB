@@ -8,3 +8,4 @@ name | description | remark
 [snake](snake) | snake game using command line | one of my first projects
 [tetris](tetris) | tetris game using command line | one of my first projects
 [sorting_visualization](sorting_visualization) | visualization of some basic sorting algorithm in command line | a personal project done during high school ICT lesson 
+[noita_save_manager](noita_save_manager) | A cli program for managing noita saves written in rust, just practicing some rust | command contains save [name], laod [name], quit 
