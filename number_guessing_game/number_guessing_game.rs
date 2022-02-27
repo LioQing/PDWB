@@ -13,13 +13,13 @@ fn input_guess(lower: i32, upper: i32) -> i32 {
         io::stdout()
             .flush()
             .expect("Could not flush stdout");
-
-        match io::stdin().read_line(&mut buf) {
-            Err(_) => continue,
-            Ok(_) => match buf.trim().parse::<i32>() {
-                Ok(x) if lower <= x && x <= upper => return x,
-                _ => continue,
-            },
+        
+        if let Ok(_) = io::stdin().read_line(&mut buf) {
+            if let Ok(x) = buf.trim().parse::<i32>() {
+                if lower <= x && x <= upper {
+                    return x;
+                }
+            }
         }
     }
 }
