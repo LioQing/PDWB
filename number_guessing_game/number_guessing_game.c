@@ -2,15 +2,16 @@
 #include <stdlib.h>
 #include <time.h>
 
-int lower = 1, upper = 100;
-int n;
+
 
 int main(int argc, char** argv) {
-    srand(time(NULL));
+    int lower = 1, upper = 100;
+    int n;
+    int input = 0;
 
+    srand(time(NULL));
     n = rand() % 100 + 1;
 
-    int input = 0;
     while(input != n){
         printf("Make a guess (%d - %d): ", lower, upper);
         scanf("%d", &input);
@@ -24,7 +25,6 @@ int main(int argc, char** argv) {
         } else {
             printf("You are correct\n");
         }
-
     }
 
     return 0;
