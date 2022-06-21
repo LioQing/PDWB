@@ -10,11 +10,10 @@ int main(int argc, char** argv) {
 
     n = rand() % 100 + 1;
 
-    for (int input = 0; input != n;) {
-        while (printf("Make a guess (%d - %d): ", lower, upper), scanf("%d", &input) != 1 || input < lower || input > upper) {
-            int c;
-            while (c = fgetc(stdin) != '\n' && c != EOF);
-        }
+    int input = 0;
+    while(input != n){
+        printf("Make a guess (%d - %d): ", lower, upper);
+        scanf("%d", &input);
 
         if (input > n) {
             printf("%d is too large\n", input);
@@ -25,6 +24,7 @@ int main(int argc, char** argv) {
         } else {
             printf("You are correct\n");
         }
+
     }
 
     return 0;
