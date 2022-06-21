@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-
-
 int main(int argc, char** argv) {
     int lower = 1, upper = 100;
     int n;
@@ -18,10 +16,12 @@ int main(int argc, char** argv) {
 
         if (input > n) {
             printf("%d is too large\n", input);
-            upper = input - 1;
+            if (upper > input - 1)
+                upper = input - 1;
         } else if (input < n) {
             printf("%d is too small\n", input);
-            lower = input + 1;
+            if (lower < input + 1)
+                lower = input + 1;
         } else {
             printf("You are correct\n");
         }
