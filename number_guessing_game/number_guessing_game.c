@@ -11,8 +11,11 @@ int main(int argc, char** argv) {
     n = rand() % 100 + 1;
 
     while(input != n){
-        printf("Make a guess (%d - %d): ", lower, upper);
-        scanf("%d", &input);
+        do{
+            fflush(stdin);
+            printf("Make a guess (%d - %d): ", lower, upper);
+        }
+        while (scanf("%d", &input) != 1);
 
         if (input > n) {
             printf("%d is too large\n", input);
