@@ -10,21 +10,19 @@ int main(int argc, char** argv) {
     srand(time(NULL));
     n = rand() % 100 + 1;
 
-    while(input != n){
-        do{
+    while (input != n) {
+        do {
             fflush(stdin);
             printf("Make a guess (%d - %d): ", lower, upper);
         }
-        while (scanf("%d", &input) != 1);
+        while (scanf("%d", &input) != 1 || input < lower || input > upper);
 
         if (input > n) {
             printf("%d is too large\n", input);
-            if (upper > input - 1)
-                upper = input - 1;
+            upper = input - 1;
         } else if (input < n) {
             printf("%d is too small\n", input);
-            if (lower < input + 1)
-                lower = input + 1;
+            lower = input + 1;
         } else {
             printf("You are correct\n");
         }
