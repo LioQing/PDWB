@@ -1,40 +1,26 @@
 open System
 
+let lower = 1
+let upper = 100
 let rnd = Random()
+let n = rnd.Next(lower, upper + 1)
 
-let inputPrompt lower upper =
-    printf "Make a guess (%i - %i): " lower upper
-    Console.ReadLine()
-
-let rec inputLoop lower upper (input: string) =
-    match Int32.TryParse input with
+let rec input lower upper =
+    printf $"Make a guess ({lower} - {upper}): "
+    match Int32.TryParse (Console.ReadLine()) with
     | true, x when x >= lower && x <= upper -> x
-    | _ -> inputPrompt lower upper |> inputLoop lower upper
-    
+    | _ -> input lower upper
 
-let inputGuess lower upper =
-    inputPrompt lower upper
-    |> inputLoop lower upper
+let rec loop lower upper = 
+    match input lower upper with
+    | x when x > n ->
+        printf $"{x} is too large\n"
+        loop lower (x - 1)
+    
+    | x when x < n ->
+        printf $"{x} is too small\n"
+        loop (x + 1) upper
+    
+    | _ -> printf "You are correct\n"
 
-[<EntryPoint>]
-let main args =
-    
-    let initLower = 1
-    let initUpper = 100
-    let n = rnd.Next(initLower, initUpper + 1)
-        
-    let rec mainLoop lower upper =
-        match inputGuess lower upper with
-        | x when x > n ->
-            Console.WriteLine($"{x.ToString()} is too large");
-            mainLoop lower (x - 1)
-            
-        | x when x < n ->
-            Console.WriteLine($"{x.ToString()} is too small");
-            mainLoop (x + 1) upper
-            
-        | _ -> Console.WriteLine("You are correct")
-        
-    mainLoop initLower initUpper
-    
-    0
+loop lower upper

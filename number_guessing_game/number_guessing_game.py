@@ -5,16 +5,14 @@ lower = 1
 upper = 100
 n = random.randint(lower, upper)
 
-input_num = 0
-while input_num != n:
-    while True:
-        try:
-            input_num = int(input("Make a guess (%d - %d): " % (lower, upper)))
-            if input_num < lower or input_num > upper:
-                raise ValueError
-            break
-        except ValueError:
-            continue
+input_num = None
+while True:
+    try:
+        input_num = int(input(f"Make a guess ({lower} - {upper}): "))
+        if input_num < lower or input_num > upper:
+            raise ValueError
+    except ValueError:
+        continue
     
     if input_num > n:
         print(f"{input_num} is too large")
@@ -24,3 +22,4 @@ while input_num != n:
         lower = input_num + 1
     else:
         print("You are correct")
+        break

@@ -3,20 +3,25 @@ lower = 1
 upper = 100
 n = math.random(lower, upper)
 
-input_num = nil
-while input_num ~= n do
-    while not input_num or input_num < lower or input_num > upper do
-        print(string.format("Make a guess (%d - %d): ", lower, upper))
-        input_num = io.read("n")
+input = nil
+while true do
+    io.write(string.format("Make a guess (%d - %d): ", lower, upper))
+
+    input = tonumber(io.read())
+    if input == nil or input < lower or input > upper then
+        goto continue
     end
 
-    if input_num > n then
-        print(string.format("%d is too large", input_num))
-        upper = input_num - 1
-    elseif input_num < n then
-        print(string.format("%d is too small", input_num))
-        lower = input_num + 1
+    if input > n then
+        print(string.format("%d is too large", input))
+        upper = input - 1
+    elseif input < n then
+        print(string.format("%d is too small", input))
+        lower = input + 1
     else
         print("You are correct")
+        break
     end
+
+    ::continue::
 end

@@ -4,19 +4,22 @@
 
 int main(int argc, char** argv) 
 {
-    auto lower = 1;
-    auto upper = 100;
+    int lower = 1;
+    int upper = 100;
     std::random_device rnd;
     std::mt19937 gen(rnd());
     std::uniform_int_distribution<> distrib(lower, upper);
-    int n = distrib(gen);
+    const int n = distrib(gen);
 
-    for (auto input = 0; input != n;)
+    int input = 0;
+    while (true)
     {
-        while (std::cout << "Make a guess (" << lower << " - " << upper << "): ", !(std::cin >> input) || input < lower || input > upper)
+        std::cout << "Make a guess (" << lower << " - " << upper << "): ";
+        if (!(std::cin >> input) || input < lower || input > upper)
         {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
         }
         
         if (input > n) 
@@ -32,6 +35,7 @@ int main(int argc, char** argv)
         else 
         {
             std::cout << "You are correct" << std::endl;
+            break;
         }
     }
 
