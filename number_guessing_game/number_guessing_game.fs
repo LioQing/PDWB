@@ -16,11 +16,9 @@ let rec loop lower upper =
     | x when x > n ->
         printf $"{x} is too large\n"
         loop lower (x - 1)
-    
     | x when x < n ->
         printf $"{x} is too small\n"
         loop (x + 1) upper
-    
     | _ -> printf "You are correct\n"
 
 loop lower upper
